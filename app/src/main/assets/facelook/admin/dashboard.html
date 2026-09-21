@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Admin Dashboard — Facelook</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/popups.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- ADMIN SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <span>🛡️</span>
+        <span>Facelook Admin</span>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="dashboard.html" class="admin-nav-link active">📊 Dashboard Overview</a>
+        <a href="users.html" class="admin-nav-link">👥 User Management</a>
+        <a href="posts.html" class="admin-nav-link">📝 Post Moderation</a>
+        <a href="reports.html" class="admin-nav-link">🚩 Abuse Reports</a>
+        <a href="analytics.html" class="admin-nav-link">📈 Analytics & Traffic</a>
+        <a href="settings.html" class="admin-nav-link">⚙️ System Config</a>
+      </nav>
+
+      <div style="padding:16px; border-top:1px solid var(--border-light);">
+        <a href="../index.html" class="btn btn-secondary btn-sm btn-block">Exit to Website</a>
+      </div>
+    </aside>
+
+    <!-- ADMIN MAIN -->
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <h3 style="font-size:18px;">Operations Dashboard</h3>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span style="font-size:14px; font-weight:600;">Administrator (Mark)</span>
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="user-avatar" style="width:36px; height:36px;">
+        </div>
+      </header>
+
+      <div class="admin-content">
+        <!-- STATS CARDS -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <div class="stat-info">
+              <span class="stat-value" id="adminTotalUsers">3</span>
+              <span class="stat-label">Total Users</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">📝</div>
+            <div class="stat-info">
+              <span class="stat-value" id="adminTotalPosts">2</span>
+              <span class="stat-label">Published Posts</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">💬</div>
+            <div class="stat-info">
+              <span class="stat-value" id="adminTotalComments">2</span>
+              <span class="stat-label">Active Comments</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" style="background:var(--danger-light); color:var(--danger);">🚩</div>
+            <div class="stat-info">
+              <span class="stat-value" id="adminTotalReports">0</span>
+              <span class="stat-label">Pending Reports</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECENT REGISTERED USERS TABLE -->
+        <div class="card p-24">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <h4 style="font-size:16px; font-weight:700;">Recent User Registrations</h4>
+            <a href="users.html" class="btn btn-secondary btn-sm">View All Users</a>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminUsersTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/admin-auth.js"></script>
+  <script src="../js/admin-dashboard.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

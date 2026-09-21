@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>System Settings — Facelook Admin</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/popups.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-brand"><span>🛡️</span><span>Facelook Admin</span></div>
+      <nav class="admin-nav">
+        <a href="dashboard.html" class="admin-nav-link">📊 Dashboard</a>
+        <a href="users.html" class="admin-nav-link">👥 User Management</a>
+        <a href="posts.html" class="admin-nav-link">📝 Post Moderation</a>
+        <a href="reports.html" class="admin-nav-link">🚩 Abuse Reports</a>
+        <a href="analytics.html" class="admin-nav-link">📈 Analytics</a>
+        <a href="settings.html" class="admin-nav-link active">⚙️ System Config</a>
+      </nav>
+      <div style="padding:16px; border-top:1px solid var(--border-light);">
+        <a href="../index.html" class="btn btn-secondary btn-sm btn-block">Exit to Website</a>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <h3>System Configuration</h3>
+      </header>
+
+      <div class="admin-content">
+        <div class="card p-24">
+          <h4 style="margin-bottom:16px;">Platform Feature Toggles</h4>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:12px; border-bottom:1px solid var(--border-light);">
+              <div>
+                <strong>Allow User Registrations</strong>
+                <div style="font-size:12px; color:var(--text-secondary);">Enable public onboarding for new users.</div>
+              </div>
+              <input type="checkbox" checked style="width:20px; height:20px;">
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:12px; border-bottom:1px solid var(--border-light);">
+              <div>
+                <strong>Media Upload Size Limit</strong>
+                <div style="font-size:12px; color:var(--text-secondary);">Maximum file size for post and story photos/videos.</div>
+              </div>
+              <select class="form-control" style="max-width:140px;">
+                <option>10 MB</option>
+                <option selected>25 MB</option>
+                <option>50 MB</option>
+              </select>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <strong>Story Lifespan</strong>
+                <div style="font-size:12px; color:var(--text-secondary);">Duration before stories expire and disappear.</div>
+              </div>
+              <span style="font-weight:600;">24 Hours</span>
+            </div>
+          </div>
+
+          <div style="margin-top:24px;">
+            <button class="btn btn-primary" onclick="Utils.showToast('System configuration saved!')">Save Configuration</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/admin-auth.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

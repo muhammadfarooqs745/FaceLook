@@ -1,0 +1,51 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isImage() {
+      return request.resource.contentType.matches('image/.*');
+    }
+    
+    function isVideo() {
+      return request.resource.contentType.matches('video/.*');
+    }
+    
+    function isValidSize(maxMb) {
+      return request.resource.size < maxMb * 1024 * 1024;
+    }
+
+    // Profile photos & covers
+    match /users/{userId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAuthenticated() && request.auth.uid == userId && isImage() && isValidSize(10);
+    }
+
+    // Post media (Images up to 15MB, Videos up to 50MB)
+    match /posts/{userId}/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && request.auth.uid == userId && (
+        (isImage() && isValidSize(15)) || 
+        (isVideo() && isValidSize(50))
+      );
+    }
+
+    // Story media
+    match /stories/{userId}/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && request.auth.uid == userId && (
+        (isImage() && isValidSize(10)) || 
+        (isVideo() && isValidSize(30))
+      );
+    }
+
+    // Messages media
+    match /messages/{conversationId}/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (isImage() || isVideo()) && isValidSize(20);
+    }
+  }
+}

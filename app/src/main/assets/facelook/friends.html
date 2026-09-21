@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Friends — Facelook</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/popups.css">
+  <style>
+    .friends-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .friend-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .friend-card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .friend-card-body {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="logo-brand">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="20" fill="#1877F2"/>
+          <path d="M25 14H21.5C20.1193 14 19 15.1193 19 16.5V20H15V24H19V32H23V24H26.5L27 20H23V17C23 16.4477 23.4477 16 24 16H25V14Z" fill="white"/>
+        </svg>
+        <span>Facelook</span>
+      </a>
+    </div>
+    <div class="nav-center">
+      <a href="index.html" class="nav-tab"><span style="font-size:20px;">🏠</span></a>
+      <a href="friends.html" class="nav-tab active"><span style="font-size:20px;">👥</span></a>
+      <a href="requests.html" class="nav-tab"><span style="font-size:20px;">📬</span></a>
+    </div>
+    <div class="nav-right">
+      <a href="messages.html" class="nav-icon-btn">💬</a>
+      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="user-avatar nav-user-avatar" onclick="window.location.href='profile.html'">
+    </div>
+  </nav>
+
+  <div style="max-width: 1100px; margin: 80px auto 40px auto; padding: 0 16px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+      <h2>Friends & Connections</h2>
+      <a href="requests.html" class="btn btn-secondary btn-sm">Friend Requests</a>
+    </div>
+
+    <!-- FRIENDS GRID -->
+    <div class="friends-grid" id="friendsGrid"></div>
+  </div>
+
+  <nav class="mobile-bottom-bar">
+    <a href="index.html" class="bottom-tab"><span>🏠</span><span>Home</span></a>
+    <a href="friends.html" class="bottom-tab active"><span>👥</span><span>Friends</span></a>
+    <a href="messages.html" class="bottom-tab"><span>💬</span><span>Chat</span></a>
+    <a href="notifications.html" class="bottom-tab"><span>🔔</span><span>Alerts</span></a>
+    <a href="profile.html" class="bottom-tab"><span>👤</span><span>Profile</span></a>
+  </nav>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/friends.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const users = FacelookConfig.getLocalCollection("users") || [];
+      const currentUser = Auth.getCurrentUser();
+      const grid = document.getElementById("friendsGrid");
+
+      grid.innerHTML = users.filter(u => u.id !== currentUser.id).map(u => `
+        <div class="friend-card">
+          <img src="${u.avatar}" class="friend-card-img" alt="${Utils.escapeHtml(u.name)}">
+          <div class="friend-card-body">
+            <strong style="font-size:15px;">${Utils.escapeHtml(u.name)}</strong>
+            <div style="font-size:12px; color:var(--text-secondary);">${u.friendsCount || 0} mutual friends</div>
+            <button class="btn btn-primary btn-sm btn-block" onclick="window.location.href='messages.html'">Message</button>
+            <button class="btn btn-secondary btn-sm btn-block" onclick="App.openModal('modalUnfriend', {userId:'${u.id}'})">Remove</button>
+          </div>
+        </div>
+      `).join("");
+    });
+  </script>
+</body>
+</html>

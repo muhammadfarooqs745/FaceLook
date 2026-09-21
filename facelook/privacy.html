@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Privacy Policy & Controls — Facelook</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/settings.css">
+  <link rel="stylesheet" href="css/popups.css">
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="logo-brand">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="20" fill="#1877F2"/>
+          <path d="M25 14H21.5C20.1193 14 19 15.1193 19 16.5V20H15V24H19V32H23V24H26.5L27 20H23V17C23 16.4477 23.4477 16 24 16H25V14Z" fill="white"/>
+        </svg>
+        <span>Facelook</span>
+      </a>
+      <h3 style="margin-left: 20px; font-size:18px;">Privacy Center</h3>
+    </div>
+    <div class="nav-right">
+      <a href="settings.html" class="btn btn-secondary btn-sm">Settings</a>
+    </div>
+  </nav>
+
+  <div style="max-width: 800px; margin: 80px auto 40px auto; padding: 0 16px;">
+    <div class="card p-24">
+      <h2 style="font-size:24px; font-weight:800; margin-bottom:12px;">Privacy Controls & Policy</h2>
+      <p style="color:var(--text-secondary); line-height:1.6; margin-bottom:24px;">
+        At Facelook, we empower you with granular control over who sees your posts, profile information, and activity across our social network.
+      </p>
+
+      <div class="settings-group">
+        <div class="settings-row">
+          <div class="settings-row-info">
+            <span class="settings-row-label">Future Posts Default Audience</span>
+            <span class="settings-row-help">Who can see future posts you publish?</span>
+          </div>
+          <select class="form-control" style="max-width:180px;">
+            <option>Public</option>
+            <option selected>Friends</option>
+            <option>Only me</option>
+          </select>
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-row-info">
+            <span class="settings-row-label">Who can send you friend requests?</span>
+            <span class="settings-row-help">Manage who can discover and connect with you.</span>
+          </div>
+          <select class="form-control" style="max-width:180px;">
+            <option selected>Everyone</option>
+            <option>Friends of friends</option>
+          </select>
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-row-info">
+            <span class="settings-row-label">Search Engine Indexing</span>
+            <span class="settings-row-help">Do you want search engines outside Facelook to link to your profile?</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div style="margin-top:24px; text-align:right;">
+        <button class="btn btn-primary" onclick="Utils.showToast('Privacy preferences updated successfully!')">Save Preferences</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

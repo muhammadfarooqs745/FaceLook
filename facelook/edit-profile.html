@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Edit Profile — Facelook</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/settings.css">
+  <link rel="stylesheet" href="css/popups.css">
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="logo-brand">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="20" fill="#1877F2"/>
+          <path d="M25 14H21.5C20.1193 14 19 15.1193 19 16.5V20H15V24H19V32H23V24H26.5L27 20H23V17C23 16.4477 23.4477 16 24 16H25V14Z" fill="white"/>
+        </svg>
+        <span>Facelook</span>
+      </a>
+    </div>
+    <div class="nav-right">
+      <button class="btn btn-secondary btn-sm" onclick="window.location.href='profile.html'">View Profile</button>
+    </div>
+  </nav>
+
+  <div style="max-width: 700px; margin: 80px auto 40px auto; padding: 0 16px;">
+    <div class="card p-24">
+      <h2 style="font-size:22px; font-weight:800; border-bottom:1px solid var(--border-light); padding-bottom:12px; margin-bottom:20px;">Edit Profile</h2>
+      
+      <form id="editProfileForm">
+        <div class="form-group" style="text-align:center;">
+          <img id="editAvatarPreview" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="user-avatar" style="width:100px; height:100px; margin:0 auto 12px auto;">
+          <div>
+            <button type="button" class="btn btn-outline btn-sm" onclick="App.openModal('modalProfilePicUpload')">Change Profile Picture</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" id="editName" class="form-control" value="Mark Zuckerberg">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Bio</label>
+          <textarea id="editBio" class="form-control" rows="3">Building the future of human connection at Facelook 🚀</textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Work / Occupation</label>
+          <input type="text" id="editWork" class="form-control" value="Founder & CEO at Facelook">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Lives In</label>
+          <input type="text" id="editLives" class="form-control" value="Palo Alto, California">
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:24px;">
+          <button type="button" class="btn btn-secondary" onclick="window.location.href='profile.html'">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/upload.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = Auth.requireAuth();
+      if (!user) return;
+      document.getElementById("editName").value = user.name || "";
+      document.getElementById("editBio").value = user.bio || "";
+      document.getElementById("editWork").value = user.work || "";
+      document.getElementById("editLives").value = user.lives || "";
+      document.getElementById("editAvatarPreview").src = user.avatar || "";
+
+      document.getElementById("editProfileForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        user.name = document.getElementById("editName").value.trim();
+        user.bio = document.getElementById("editBio").value.trim();
+        user.work = document.getElementById("editWork").value.trim();
+        user.lives = document.getElementById("editLives").value.trim();
+
+        const users = FacelookConfig.getLocalCollection("users") || [];
+        const idx = users.findIndex(u => u.id === user.id);
+        if (idx !== -1) {
+          users[idx] = { ...users[idx], ...user };
+          FacelookConfig.setLocalCollection("users", users);
+        }
+        Auth.setCurrentUser(user);
+        Utils.showToast("Profile updated successfully!");
+        setTimeout(() => window.location.href = "profile.html", 800);
+      });
+    });
+  </script>
+</body>
+</html>

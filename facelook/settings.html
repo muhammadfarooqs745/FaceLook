@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Settings & Privacy — Facelook</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/settings.css">
+  <link rel="stylesheet" href="css/popups.css">
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="logo-brand">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="20" fill="#1877F2"/>
+          <path d="M25 14H21.5C20.1193 14 19 15.1193 19 16.5V20H15V24H19V32H23V24H26.5L27 20H23V17C23 16.4477 23.4477 16 24 16H25V14Z" fill="white"/>
+        </svg>
+        <span>Facelook</span>
+      </a>
+      <h3 style="margin-left: 20px; font-size:18px;">Settings</h3>
+    </div>
+    <div class="nav-right">
+      <a href="index.html" class="btn btn-secondary btn-sm">Home</a>
+    </div>
+  </nav>
+
+  <div class="settings-container" style="margin-top: calc(var(--nav-height) + 20px);">
+    
+    <!-- LEFT SETTINGS TABS -->
+    <aside class="settings-nav">
+      <div class="settings-nav-title">Settings</div>
+      <div class="settings-tab-btn active">👤 General Account</div>
+      <div class="settings-tab-btn" onclick="window.location.href='privacy.html'">🔒 Privacy</div>
+      <div class="settings-tab-btn" onclick="App.openModal('modalChangePassword')">🔑 Security & Login</div>
+      <div class="settings-tab-btn" onclick="Utils.showToast('Language set to English (US)')">🌐 Language</div>
+      <div class="settings-tab-btn" onclick="App.openModal('modalDeleteAccount')" style="color:var(--danger);">⚠️ Account Deletion</div>
+    </aside>
+
+    <!-- RIGHT SETTINGS BODY -->
+    <main class="settings-content-card">
+      <div class="settings-section-header">
+        <h2 class="settings-section-title">General Account Settings</h2>
+        <p class="settings-section-desc">Manage your basic account identity, email, and display appearance.</p>
+      </div>
+
+      <form id="accountSettingsForm" class="settings-group">
+        <div class="settings-row">
+          <div class="settings-row-info">
+            <span class="settings-row-label">Full Name</span>
+            <span class="settings-row-help">Your public display name visible on posts and comments.</span>
+          </div>
+          <input type="text" id="settingsNameInput" class="form-control" style="max-width:240px;">
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-row-info">
+            <span class="settings-row-label">Username</span>
+            <span class="settings-row-help">facelook.com/username</span>
+          </div>
+          <input type="text" id="settingsUsernameInput" class="form-control" style="max-width:240px;">
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-row-info">
+            <span class="settings-row-label">Email Address</span>
+            <span class="settings-row-help">Primary email used for account security and notifications.</span>
+          </div>
+          <input type="email" id="settingsEmailInput" class="form-control" style="max-width:240px;">
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-row-info">
+            <span class="settings-row-label">Bio Description</span>
+            <span class="settings-row-help">A brief description shown on your profile intro.</span>
+          </div>
+          <input type="text" id="settingsBioInput" class="form-control" style="max-width:240px;">
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-row-info">
+            <span class="settings-row-label">Dark Theme Mode</span>
+            <span class="settings-row-help">Switch between light interface and high-contrast dark mode.</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:20px;">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+
+        <div class="danger-box">
+          <h4 style="color:var(--danger); font-size:16px;">Danger Zone</h4>
+          <p style="font-size:13px; color:var(--text-secondary); margin:6px 0 12px 0;">Once you delete your account, there is no going back. Please be certain.</p>
+          <button type="button" class="btn btn-danger btn-sm" onclick="App.openModal('modalDeleteAccount')">Delete Account</button>
+        </div>
+      </form>
+    </main>
+
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

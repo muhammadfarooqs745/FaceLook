@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Facelook — Connect with the World</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/popups.css">
+</head>
+<body>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="logo-brand">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="20" fill="#1877F2"/>
+          <path d="M25 14H21.5C20.1193 14 19 15.1193 19 16.5V20H15V24H19V32H23V24H26.5L27 20H23V17C23 16.4477 23.4477 16 24 16H25V14Z" fill="white"/>
+        </svg>
+        <span>Facelook</span>
+      </a>
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" placeholder="Search Facelook..." onkeydown="if(event.key==='Enter') window.location.href='search.html?q='+encodeURIComponent(this.value)">
+      </div>
+    </div>
+
+    <div class="nav-center">
+      <a href="index.html" class="nav-tab active" title="Home">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+      </a>
+      <a href="friends.html" class="nav-tab" title="Friends">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+      </a>
+      <a href="groups.html" class="nav-tab" title="Groups">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+      </a>
+      <a href="pages.html" class="nav-tab" title="Pages">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+          <line x1="4" y1="22" x2="4" y2="15"></line>
+        </svg>
+      </a>
+    </div>
+
+    <div class="nav-right">
+      <button class="nav-icon-btn" onclick="App.openModal('modalCreatePost')" title="Create Post">
+        <span style="font-size:20px; font-weight:bold;">+</span>
+      </button>
+
+      <a href="messages.html" class="nav-icon-btn" title="Messenger">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.03 2 11C2 13.82 3.42 16.32 5.67 17.89V22L9.58 19.86C10.36 20.08 11.17 20.2 12 20.2C17.52 20.2 22 16.17 22 11.2C22 6.23 17.52 2 12 2Z"/>
+        </svg>
+      </a>
+
+      <!-- NOTIFICATIONS DROPDOWN TRIGGER -->
+      <div style="position:relative;">
+        <button class="nav-icon-btn" id="notifDropdownBtn" title="Notifications">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+          </svg>
+          <div id="notifBadge" class="nav-badge" style="display:none;">2</div>
+        </button>
+        <div id="notifDropdownMenu" class="dropdown-menu">
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; border-bottom:1px solid var(--border-light);">
+            <strong>Notifications</strong>
+            <span style="font-size:12px; color:var(--primary); cursor:pointer;" onclick="Notifications.markAllAsRead()">Mark all as read</span>
+          </div>
+          <div id="notificationsList" style="max-height:360px; overflow-y:auto;"></div>
+          <a href="notifications.html" style="display:block; text-align:center; padding:10px; color:var(--primary); font-weight:600; font-size:13px; border-top:1px solid var(--border-light);">See all notifications</a>
+        </div>
+      </div>
+
+      <!-- USER PROFILE DROPDOWN TRIGGER -->
+      <div style="position:relative;">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" id="profileDropdownBtn" class="user-avatar nav-user-avatar" alt="Profile">
+        <div id="profileDropdownMenu" class="dropdown-menu">
+          <a href="profile.html" class="dropdown-item" style="border-bottom:1px solid var(--border-light); padding-bottom:12px;">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="user-avatar nav-user-avatar" style="width:48px; height:48px;">
+            <div>
+              <strong id="navUserName">Mark Zuckerberg</strong>
+              <div style="font-size:13px; color:var(--text-secondary);">See your profile</div>
+            </div>
+          </a>
+          <a href="settings.html" class="dropdown-item">⚙️ Settings & Privacy</a>
+          <div class="dropdown-item" onclick="Utils.toggleTheme()">🌓 Display & Dark Mode</div>
+          <a href="admin/dashboard.html" class="dropdown-item">🛡️ Admin Dashboard</a>
+          <a href="help.html" class="dropdown-item">❓ Help & Support</a>
+          <div class="dropdown-item" style="color:var(--danger);" onclick="App.openModal('modalLogoutConfirm')">🚪 Log Out</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN 3-COLUMN LAYOUT -->
+  <div class="app-container">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar-left">
+      <a href="profile.html" class="sidebar-item">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="user-avatar nav-user-avatar" style="width:36px; height:36px;">
+        <span style="font-weight:600;">My Profile</span>
+      </a>
+      <a href="friends.html" class="sidebar-item">
+        <div class="sidebar-icon">👥</div>
+        <span>Friends</span>
+      </a>
+      <a href="saved-posts.html" class="sidebar-item">
+        <div class="sidebar-icon">🔖</div>
+        <span>Saved Posts</span>
+      </a>
+      <a href="groups.html" class="sidebar-item">
+        <div class="sidebar-icon">👨‍👩‍👧‍👦</div>
+        <span>Groups</span>
+      </a>
+      <a href="pages.html" class="sidebar-item">
+        <div class="sidebar-icon">🚩</div>
+        <span>Pages</span>
+      </a>
+      <a href="stories.html" class="sidebar-item">
+        <div class="sidebar-icon">⏳</div>
+        <span>Stories</span>
+      </a>
+      <a href="settings.html" class="sidebar-item">
+        <div class="sidebar-icon">⚙️</div>
+        <span>Settings</span>
+      </a>
+      
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-heading">Account Switcher (Demo)</div>
+      <div class="sidebar-item" onclick="Auth.switchDemoUser('user_mark')">
+        <span style="font-size:18px;">👑</span>
+        <span>Mark Zuckerberg (Admin)</span>
+      </div>
+      <div class="sidebar-item" onclick="Auth.switchDemoUser('user_sarah')">
+        <span style="font-size:18px;">🎨</span>
+        <span>Sarah Jenkins</span>
+      </div>
+      <div class="sidebar-item" onclick="Auth.switchDemoUser('user_alex')">
+        <span style="font-size:18px;">💻</span>
+        <span>Alex Rivera</span>
+      </div>
+
+      <div class="sidebar-divider"></div>
+      <div style="padding:8px 12px; font-size:12px; color:var(--text-muted);">
+        <a href="about.html">About</a> • <a href="privacy.html">Privacy</a> • <a href="help.html">Help</a><br>
+        Facelook © 2026
+      </div>
+    </aside>
+
+    <!-- CENTER NEWS FEED AREA -->
+    <main class="main-feed-area">
+      
+      <!-- STORIES TRAY -->
+      <section class="stories-container" id="storiesContainer"></section>
+
+      <!-- CREATE POST BOX -->
+      <section class="create-post-card">
+        <div class="create-post-header">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="user-avatar nav-user-avatar" alt="Avatar">
+          <div class="create-post-input-trigger" onclick="App.openModal('modalCreatePost')">
+            What's on your mind, Mark?
+          </div>
+        </div>
+        <div class="create-post-actions">
+          <div class="create-action-btn" onclick="App.openModal('modalCreatePost')">
+            <span style="color:#F3425F; font-size:18px;">🎥</span>
+            <span>Live Video</span>
+          </div>
+          <div class="create-action-btn" onclick="App.openModal('modalCreatePost')">
+            <span style="color:#45BD62; font-size:18px;">📷</span>
+            <span>Photo/Video</span>
+          </div>
+          <div class="create-action-btn" onclick="App.openModal('modalCreatePost')">
+            <span style="color:#F7B125; font-size:18px;">😊</span>
+            <span>Feeling/Activity</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- DYNAMIC NEWS FEED -->
+      <section id="feedContainer">
+        <!-- Skeletons shown while loading -->
+        <div class="card p-16 mb-16">
+          <div style="display:flex; gap:12px; align-items:center; margin-bottom:12px;">
+            <div class="skeleton" style="width:40px; height:40px; border-radius:50%;"></div>
+            <div style="flex:1;">
+              <div class="skeleton" style="height:14px; width:40%; margin-bottom:6px;"></div>
+              <div class="skeleton" style="height:10px; width:25%;"></div>
+            </div>
+          </div>
+          <div class="skeleton" style="height:16px; width:90%; margin-bottom:8px;"></div>
+          <div class="skeleton" style="height:200px; width:100%;"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="sidebar-right">
+      <div class="card widget-card">
+        <div class="widget-title">Sponsored</div>
+        <div style="display:flex; gap:12px; align-items:center; cursor:pointer;">
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=120" style="width:100px; height:70px; border-radius:var(--radius-sm); object-fit:cover;">
+          <div>
+            <div style="font-weight:600; font-size:14px;">Next-Gen Cloud Tools</div>
+            <div style="font-size:12px; color:var(--text-muted);">cloudscale.io</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card widget-card">
+        <div class="widget-title">Birthdays</div>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <span style="font-size:24px;">🎁</span>
+          <div style="font-size:13px;"><strong>Sarah Jenkins</strong> has a birthday today! Send her your best wishes.</div>
+        </div>
+      </div>
+
+      <div class="widget-title" style="padding:0 8px;">Contacts</div>
+      <div class="contact-item" onclick="window.location.href='messages.html'">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" class="user-avatar" style="width:36px; height:36px;">
+        <div class="online-dot"></div>
+        <span style="font-weight:500;">Sarah Jenkins</span>
+      </div>
+      <div class="contact-item" onclick="window.location.href='messages.html'">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" class="user-avatar" style="width:36px; height:36px;">
+        <div class="online-dot"></div>
+        <span style="font-weight:500;">Alex Rivera</span>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- MOBILE BOTTOM BAR -->
+  <nav class="mobile-bottom-bar">
+    <a href="index.html" class="bottom-tab active">
+      <span>🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="friends.html" class="bottom-tab">
+      <span>👥</span>
+      <span>Friends</span>
+    </a>
+    <a href="messages.html" class="bottom-tab">
+      <span>💬</span>
+      <span>Chat</span>
+    </a>
+    <a href="notifications.html" class="bottom-tab">
+      <span>🔔</span>
+      <span>Alerts</span>
+    </a>
+    <a href="profile.html" class="bottom-tab">
+      <span>👤</span>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- JAVASCRIPT MODULES -->
+  <script src="js/firebase-config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/upload.js"></script>
+  <script src="js/reactions.js"></script>
+  <script src="js/comments.js"></script>
+  <script src="js/posts.js"></script>
+  <script src="js/stories.js"></script>
+  <script src="js/friends.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      Stories.renderStories();
+      Posts.renderFeed();
+      Notifications.renderNotifications();
+    });
+  </script>
+
+</body>
+</html>

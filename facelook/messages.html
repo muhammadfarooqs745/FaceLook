@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Messenger — Facelook</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/messages.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/popups.css">
+</head>
+<body style="overflow: hidden;">
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="logo-brand">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="20" fill="#1877F2"/>
+          <path d="M25 14H21.5C20.1193 14 19 15.1193 19 16.5V20H15V24H19V32H23V24H26.5L27 20H23V17C23 16.4477 23.4477 16 24 16H25V14Z" fill="white"/>
+        </svg>
+        <span>Facelook</span>
+      </a>
+      <h3 style="margin-left: 20px; font-size:18px;">Messenger</h3>
+    </div>
+
+    <div class="nav-right">
+      <a href="index.html" class="btn btn-secondary btn-sm">Back to Feed</a>
+    </div>
+  </nav>
+
+  <!-- FULLSCREEN MESSENGER DESKTOP & MOBILE WRAPPER -->
+  <div class="messenger-container" style="margin-top: var(--nav-height);">
+    <!-- SIDEBAR CONVERSATIONS LIST -->
+    <aside class="messenger-sidebar">
+      <div class="messenger-sidebar-header">
+        <h2 style="font-size: 20px; font-weight:800;">Chats</h2>
+        <div class="search-box" style="margin-top: 10px; max-width: 100%;">
+          <input type="text" placeholder="Search Messenger...">
+        </div>
+      </div>
+
+      <div class="conversations-list" id="conversationsList"></div>
+    </aside>
+
+    <!-- ACTIVE CHAT AREA -->
+    <main class="messenger-chat-area">
+      <!-- CHAT HEADER -->
+      <div class="chat-header">
+        <div class="chat-header-user">
+          <div class="conversation-avatar-box">
+            <img id="chatHeaderAvatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" class="user-avatar" alt="Friend avatar">
+            <div class="online-dot"></div>
+          </div>
+          <div>
+            <div id="chatHeaderName" style="font-weight: 700; font-size: 16px;">Sarah Jenkins</div>
+            <div style="font-size: 12px; color: var(--success); font-weight:500;">Active now</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap: 8px;">
+          <button class="nav-icon-btn" onclick="Utils.showToast('Starting video call...')">📹</button>
+          <button class="nav-icon-btn" onclick="Utils.showToast('Starting voice call...')">📞</button>
+          <button class="nav-icon-btn" onclick="Utils.showToast('Chat options')">ℹ️</button>
+        </div>
+      </div>
+
+      <!-- CHAT MESSAGE BUBBLES -->
+      <div class="chat-messages-scroll" id="chatMessages"></div>
+
+      <!-- CHAT INPUT BAR -->
+      <div class="chat-input-bar">
+        <button class="chat-attachment-btn" onclick="document.getElementById('chatMediaFile').click()">📷</button>
+        <input type="file" id="chatMediaFile" style="display:none;" accept="image/*" onchange="Utils.showToast('Photo attached')">
+        <input type="text" id="chatInputField" class="chat-input-field" placeholder="Type a message..." onkeydown="if(event.key==='Enter') Messages.sendMessage()">
+        <button class="chat-send-btn" onclick="Messages.sendMessage()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/upload.js"></script>
+  <script src="js/messages.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      Messages.init();
+    });
+  </script>
+</body>
+</html>

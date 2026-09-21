@@ -1,0 +1,154 @@
+/* RESPONSIVE STYLESHEET */
+
+/* MOBILE BOTTOM BAR */
+.mobile-bottom-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background-color: var(--bg-nav);
+  border-top: 1px solid var(--border-light);
+  z-index: 1000;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+}
+
+.bottom-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 11px;
+  gap: 2px;
+  flex: 1;
+  height: 100%;
+}
+
+.bottom-tab.active {
+  color: var(--primary);
+}
+
+/* TABLET AND SMALL SCREENS (UNDER 1100px) */
+@media (max-width: 1100px) {
+  .sidebar-right {
+    display: none;
+  }
+  
+  .auth-wrapper {
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+  }
+  
+  .auth-hero {
+    padding-bottom: 0;
+  }
+  
+  .auth-brand {
+    justify-content: center;
+  }
+}
+
+/* TABLET SCREENS (UNDER 900px) */
+@media (max-width: 900px) {
+  .sidebar-left {
+    display: none;
+  }
+  
+  .profile-content-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .settings-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .messenger-sidebar {
+    width: 280px;
+  }
+}
+
+/* MOBILE PHONES (UNDER 768px) */
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 54px;
+  }
+
+  body {
+    padding-bottom: 60px; /* space for mobile bottom bar */
+  }
+
+  .mobile-bottom-bar {
+    display: flex;
+  }
+
+  .nav-center {
+    display: none;
+  }
+
+  .search-box {
+    max-width: 160px;
+  }
+
+  .main-feed-area {
+    padding: 10px 8px;
+  }
+
+  .profile-container {
+    padding: 0 4px 60px 4px;
+  }
+
+  .cover-photo-wrapper {
+    height: 200px;
+  }
+
+  .profile-main-meta {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: -80px;
+  }
+
+  .profile-names-section {
+    margin-left: 0;
+    margin-top: 12px;
+    margin-bottom: 16px;
+  }
+
+  .profile-action-buttons {
+    justify-content: center;
+  }
+
+  .messenger-container {
+    flex-direction: column;
+    height: calc(100vh - var(--nav-height) - 56px);
+  }
+
+  .messenger-sidebar {
+    width: 100%;
+    height: 100%;
+  }
+
+  .messenger-chat-area.active-mobile {
+    display: flex;
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1010;
+  }
+
+  .modal-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0 !important;
+    position: fixed;
+    bottom: 0;
+    max-height: 90vh;
+  }
+}

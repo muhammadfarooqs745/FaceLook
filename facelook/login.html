@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Log in to Facelook</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/popups.css">
+</head>
+<body class="auth-container">
+
+  <div class="auth-wrapper">
+    <!-- HERO SECTION -->
+    <div class="auth-hero">
+      <div class="auth-brand">
+        <svg viewBox="0 0 40 40" fill="none" style="width:52px; height:52px;">
+          <circle cx="20" cy="20" r="20" fill="#1877F2"/>
+          <path d="M25 14H21.5C20.1193 14 19 15.1193 19 16.5V20H15V24H19V32H23V24H26.5L27 20H23V17C23 16.4477 23.4477 16 24 16H25V14Z" fill="white"/>
+        </svg>
+        <span>Facelook</span>
+      </div>
+      <h2 class="auth-tagline">Connect with friends and the world around you on Facelook.</h2>
+    </div>
+
+    <!-- LOGIN CARD -->
+    <div class="auth-card">
+      <form id="loginForm" class="auth-form">
+        <div class="form-group">
+          <input type="text" id="emailInput" class="form-control" placeholder="Email or username" required autofocus value="zuck@facelook.com">
+        </div>
+
+        <div class="form-group">
+          <div class="input-with-icon">
+            <input type="password" id="passwordInput" class="form-control" placeholder="Password" required value="facelook123">
+            <span id="togglePasswordBtn" class="toggle-password">👁️</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Log In</button>
+
+        <div class="text-center mt-12">
+          <a href="forgot-password.html" style="color:var(--primary); font-size:14px; text-decoration:none;">Forgot password?</a>
+        </div>
+
+        <div class="auth-divider"></div>
+
+        <button type="button" class="btn btn-success btn-lg" onclick="window.location.href='signup.html'">Create new account</button>
+
+        <!-- QUICK DEMO LOGINS -->
+        <div class="demo-account-box">
+          <strong>Demo Instant Accounts:</strong><br>
+          <span class="demo-account-btn" onclick="Auth.switchDemoUser('user_mark')">👉 Login as Mark Zuckerberg (Admin)</span><br>
+          <span class="demo-account-btn" onclick="Auth.switchDemoUser('user_sarah')">👉 Login as Sarah Jenkins (User)</span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="auth-footer-links">
+    <p>English (US) • Español • Français (France) • Português • Deutsch • Italiano</p>
+    <p style="margin-top:8px;">Facelook © 2026 • <a href="privacy.html">Privacy</a> • <a href="about.html">Terms</a> • <a href="help.html">Help</a></p>
+  </footer>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

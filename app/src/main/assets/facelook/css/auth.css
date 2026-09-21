@@ -1,0 +1,175 @@
+/* AUTHENTICATION STYLESHEET (LOGIN, SIGNUP, FORGOT-PASSWORD) */
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-main);
+  padding: 24px 16px;
+}
+
+.auth-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 980px;
+  width: 100%;
+  gap: 40px;
+}
+
+.auth-hero {
+  flex: 1;
+  padding-bottom: 40px;
+}
+
+.auth-brand {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -1.5px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth-tagline {
+  font-size: 24px;
+  line-height: 1.3;
+  color: var(--text-main);
+  font-weight: 400;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 410px;
+  background: var(--bg-card);
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-light);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  font-size: 15px;
+  transition: var(--transition);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.form-control.is-invalid {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 2px var(--danger-light);
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.password-strength-meter {
+  height: 4px;
+  width: 100%;
+  background-color: var(--bg-hover);
+  border-radius: var(--radius-full);
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.password-strength-bar {
+  height: 100%;
+  width: 0%;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.password-strength-text {
+  font-size: 12px;
+  margin-top: 4px;
+  color: var(--text-muted);
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-light);
+  margin: 16px 0;
+}
+
+.auth-footer-links {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.auth-footer-links a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.demo-account-box {
+  margin-top: 16px;
+  padding: 12px;
+  background-color: var(--primary-light);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--text-main);
+  border: 1px dashed var(--primary);
+}
+
+.demo-account-btn {
+  display: inline-block;
+  margin-top: 6px;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: underline;
+  cursor: pointer;
+}

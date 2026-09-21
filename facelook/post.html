@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Post View — Facelook</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/popups.css">
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="logo-brand">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="20" fill="#1877F2"/>
+          <path d="M25 14H21.5C20.1193 14 19 15.1193 19 16.5V20H15V24H19V32H23V24H26.5L27 20H23V17C23 16.4477 23.4477 16 24 16H25V14Z" fill="white"/>
+        </svg>
+        <span>Facelook</span>
+      </a>
+    </div>
+    <div class="nav-right">
+      <a href="index.html" class="btn btn-secondary btn-sm">Feed</a>
+    </div>
+  </nav>
+
+  <div style="max-width: 680px; margin: 80px auto 40px auto; padding: 0 16px;">
+    <div id="singlePostContainer"></div>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/reactions.js"></script>
+  <script src="js/comments.js"></script>
+  <script src="js/posts.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const postId = Utils.getUrlParam("id") || "post_1";
+      const posts = FacelookConfig.getLocalCollection("posts") || [];
+      const post = posts.find(p => p.id === postId) || posts[0];
+      const container = document.getElementById("singlePostContainer");
+      if (post && container) {
+        container.innerHTML = Posts.renderPostCard(post, Auth.getCurrentUser());
+      }
+    });
+  </script>
+</body>
+</html>

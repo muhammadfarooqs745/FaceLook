@@ -1,0 +1,252 @@
+/* USER PROFILE STYLESHEET */
+
+.profile-container {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0 16px 32px 16px;
+}
+
+.profile-header-card {
+  background-color: var(--bg-card);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.cover-photo-wrapper {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  background: linear-gradient(135deg, #1877F2 0%, #0c3674 100%);
+  overflow: hidden;
+}
+
+.cover-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover-edit-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #050505;
+  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.cover-edit-btn:hover {
+  background: #ffffff;
+}
+
+.profile-info-bar {
+  padding: 0 32px 16px 32px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-main-meta {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: -60px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.profile-avatar-wrapper {
+  position: relative;
+  width: 168px;
+  height: 168px;
+  border-radius: var(--radius-full);
+  border: 4px solid var(--bg-card);
+  background-color: var(--bg-card);
+  box-shadow: var(--shadow-md);
+  flex-shrink: 0;
+}
+
+.profile-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.avatar-edit-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-hover);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+.avatar-edit-btn:hover {
+  background-color: var(--bg-active);
+}
+
+.profile-names-section {
+  flex: 1;
+  margin-left: 24px;
+  margin-bottom: 12px;
+}
+
+.profile-display-name {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.profile-username-tag {
+  font-size: 15px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.profile-friends-count {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.profile-action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+/* PROFILE TABS */
+.profile-nav-tabs {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+  overflow-x: auto;
+}
+
+.profile-tab {
+  padding: 14px 16px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+}
+
+.profile-tab:hover {
+  background-color: var(--bg-hover);
+}
+
+.profile-tab.active {
+  color: var(--primary);
+}
+
+.profile-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--primary);
+  border-radius: 3px 3px 0 0;
+}
+
+/* PROFILE 2-COL BODY (INTRO + FEED) */
+.profile-content-grid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 16px;
+}
+
+.profile-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.intro-bio-text {
+  font-size: 15px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  color: var(--text-main);
+  text-align: center;
+}
+
+.intro-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.intro-info-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-main);
+  font-size: 14px;
+}
+
+.intro-info-item svg {
+  color: var(--text-secondary);
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* PHOTO & FRIEND THUMB GRID */
+.grid-preview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.grid-photo-thumb {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.grid-photo-thumb:hover {
+  transform: scale(1.04);
+}
+
+.friend-thumb-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+.friend-thumb-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.2;
+}

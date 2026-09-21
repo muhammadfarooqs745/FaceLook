@@ -1,0 +1,6 @@
+{
+  "name": "Facelook",
+  "description": "Modern, responsive social media platform inspired by Facebook with real-time news feed, stories, messaging, notifications, groups, pages, popups, and admin panel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

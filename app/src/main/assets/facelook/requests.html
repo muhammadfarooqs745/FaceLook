@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Friend Requests — Facelook</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/popups.css">
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="logo-brand">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="20" fill="#1877F2"/>
+          <path d="M25 14H21.5C20.1193 14 19 15.1193 19 16.5V20H15V24H19V32H23V24H26.5L27 20H23V17C23 16.4477 23.4477 16 24 16H25V14Z" fill="white"/>
+        </svg>
+        <span>Facelook</span>
+      </a>
+    </div>
+    <div class="nav-center">
+      <a href="index.html" class="nav-tab"><span style="font-size:20px;">🏠</span></a>
+      <a href="friends.html" class="nav-tab"><span style="font-size:20px;">👥</span></a>
+      <a href="requests.html" class="nav-tab active"><span style="font-size:20px;">📬</span></a>
+    </div>
+    <div class="nav-right">
+      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="user-avatar nav-user-avatar" onclick="window.location.href='profile.html'">
+    </div>
+  </nav>
+
+  <div style="max-width: 600px; margin: 80px auto 40px auto; padding: 0 16px;">
+    <h2 style="margin-bottom:16px;">Friend Requests</h2>
+    
+    <div class="card p-16" id="requestsContainer">
+      <!-- SAMPLE FRIEND REQUEST -->
+      <div style="display:flex; align-items:center; gap:16px; padding:12px 0; border-bottom:1px solid var(--border-light);">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" class="user-avatar" style="width:52px; height:52px;">
+        <div style="flex:1;">
+          <strong>Alex Rivera</strong>
+          <div style="font-size:12px; color:var(--text-muted);">14 mutual friends</div>
+          <div style="display:flex; gap:8px; margin-top:8px;">
+            <button class="btn btn-primary btn-sm" onclick="Utils.showToast('Friend request accepted!'); this.closest('div[style*=display]').parentElement.parentElement.remove();">Confirm</button>
+            <button class="btn btn-secondary btn-sm" onclick="Utils.showToast('Request deleted.'); this.closest('div[style*=display]').parentElement.parentElement.remove();">Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:16px; padding:12px 0;">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" class="user-avatar" style="width:52px; height:52px;">
+        <div style="flex:1;">
+          <strong>Sarah Jenkins</strong>
+          <div style="font-size:12px; color:var(--text-muted);">26 mutual friends</div>
+          <div style="display:flex; gap:8px; margin-top:8px;">
+            <button class="btn btn-primary btn-sm" onclick="Utils.showToast('Friend request accepted!'); this.closest('div[style*=display]').parentElement.parentElement.remove();">Confirm</button>
+            <button class="btn btn-secondary btn-sm" onclick="Utils.showToast('Request deleted.'); this.closest('div[style*=display]').parentElement.parentElement.remove();">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/friends.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

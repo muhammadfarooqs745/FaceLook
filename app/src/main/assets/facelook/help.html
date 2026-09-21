@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Help & Support — Facelook</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/popups.css">
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="logo-brand">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="20" fill="#1877F2"/>
+          <path d="M25 14H21.5C20.1193 14 19 15.1193 19 16.5V20H15V24H19V32H23V24H26.5L27 20H23V17C23 16.4477 23.4477 16 24 16H25V14Z" fill="white"/>
+        </svg>
+        <span>Facelook</span>
+      </a>
+      <h3 style="margin-left: 20px; font-size:18px;">Help Center</h3>
+    </div>
+    <div class="nav-right">
+      <a href="index.html" class="btn btn-secondary btn-sm">Home</a>
+    </div>
+  </nav>
+
+  <div style="max-width: 800px; margin: 80px auto 40px auto; padding: 0 16px;">
+    <div class="card p-24 mb-16" style="text-align:center;">
+      <h2 style="font-size:26px; font-weight:800; margin-bottom:8px;">How can we help you?</h2>
+      <p style="color:var(--text-secondary); margin-bottom:16px;">Search our help database or browse popular support topics.</p>
+      <div class="search-box" style="margin: 0 auto; max-width: 440px;">
+        <input type="text" placeholder="Describe your issue...">
+      </div>
+    </div>
+
+    <div class="card p-24">
+      <h3 style="margin-bottom:16px;">Frequently Asked Questions</h3>
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <details style="cursor:pointer; padding:8px 0; border-bottom:1px solid var(--border-light);">
+          <summary style="font-weight:600; color:var(--text-main);">How do I reset my password?</summary>
+          <p style="font-size:14px; color:var(--text-secondary); margin-top:8px;">You can visit the "Forgot password" screen or go to Settings &gt; Security & Login &gt; Change Password at any time.</p>
+        </details>
+
+        <details style="cursor:pointer; padding:8px 0; border-bottom:1px solid var(--border-light);">
+          <summary style="font-weight:600; color:var(--text-main);">How do 24-hour stories work?</summary>
+          <p style="font-size:14px; color:var(--text-secondary); margin-top:8px;">Photos you share to your story appear at the top of your friends' feeds and automatically expire after 24 hours.</p>
+        </details>
+
+        <details style="cursor:pointer; padding:8px 0;">
+          <summary style="font-weight:600; color:var(--text-main);">How can I report abusive content or spam?</summary>
+          <p style="font-size:14px; color:var(--text-secondary); margin-top:8px;">Click the three dots (•••) on any post and choose "Report Post". Our admin moderation team will promptly review it.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

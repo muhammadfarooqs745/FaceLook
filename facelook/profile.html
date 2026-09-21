@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>User Profile — Facelook</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/profile.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/popups.css">
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="logo-brand">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="20" fill="#1877F2"/>
+          <path d="M25 14H21.5C20.1193 14 19 15.1193 19 16.5V20H15V24H19V32H23V24H26.5L27 20H23V17C23 16.4477 23.4477 16 24 16H25V14Z" fill="white"/>
+        </svg>
+        <span>Facelook</span>
+      </a>
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" placeholder="Search Facelook..." onkeydown="if(event.key==='Enter') window.location.href='search.html?q='+encodeURIComponent(this.value)">
+      </div>
+    </div>
+
+    <div class="nav-center">
+      <a href="index.html" class="nav-tab"><span style="font-size:20px;">🏠</span></a>
+      <a href="friends.html" class="nav-tab"><span style="font-size:20px;">👥</span></a>
+      <a href="groups.html" class="nav-tab"><span style="font-size:20px;">👨‍👩‍👧‍👦</span></a>
+    </div>
+
+    <div class="nav-right">
+      <a href="messages.html" class="nav-icon-btn">💬</a>
+      <a href="settings.html" class="nav-icon-btn">⚙️</a>
+      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="user-avatar nav-user-avatar" onclick="window.location.href='profile.html'">
+    </div>
+  </nav>
+
+  <div class="profile-container" style="margin-top: calc(var(--nav-height) + 12px);">
+    
+    <!-- PROFILE HEADER CARD -->
+    <div class="profile-header-card">
+      <div class="cover-photo-wrapper">
+        <img id="profileCover" class="cover-photo-img" src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1200" alt="Cover photo">
+        <button class="cover-edit-btn" onclick="App.openModal('modalCoverPhotoUpload')">
+          <span>📷</span>
+          <span>Edit Cover Photo</span>
+        </button>
+      </div>
+
+      <div class="profile-info-bar">
+        <div class="profile-main-meta">
+          <div class="profile-avatar-wrapper">
+            <img id="profileAvatar" class="profile-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Profile avatar">
+            <button class="avatar-edit-btn" onclick="App.openModal('modalProfilePicUpload')">📷</button>
+          </div>
+
+          <div class="profile-names-section">
+            <h1 id="profileName" class="profile-display-name">Mark Zuckerberg</h1>
+            <div id="profileUsername" class="profile-username-tag">@zuck</div>
+            <div id="profileFriendsCount" class="profile-friends-count">1.4K friends</div>
+          </div>
+
+          <div id="profileActions" class="profile-action-buttons"></div>
+        </div>
+
+        <!-- PROFILE TABS -->
+        <div class="profile-nav-tabs">
+          <div class="profile-tab active">Posts</div>
+          <div class="profile-tab" onclick="Utils.showToast('Showing About section')">About</div>
+          <div class="profile-tab" onclick="window.location.href='friends.html'">Friends</div>
+          <div class="profile-tab" onclick="Utils.showToast('Showing Photos')">Photos</div>
+          <div class="profile-tab" onclick="Utils.showToast('Showing Videos')">Videos</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE 2-COLUMN BODY -->
+    <div class="profile-content-grid">
+      <!-- LEFT INTRO & INFO -->
+      <div class="profile-sidebar">
+        <div class="card p-16">
+          <h3 style="margin-bottom:12px; font-size:18px;">Intro</h3>
+          <p id="profileBio" class="intro-bio-text"></p>
+          <button class="btn btn-secondary btn-block btn-sm" onclick="window.location.href='edit-profile.html'">Edit bio</button>
+          
+          <div class="intro-info-list">
+            <div class="intro-info-item">
+              <span>💼</span>
+              <span id="profileWork">Founder & CEO at Facelook</span>
+            </div>
+            <div class="intro-info-item">
+              <span>🏠</span>
+              <span id="profileLives">Lives in Palo Alto, California</span>
+            </div>
+            <div class="intro-info-item">
+              <span>🌐</span>
+              <a href="#" style="color:var(--primary);">https://facelook.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card p-16">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3>Photos</h3>
+            <a href="#" style="color:var(--primary); font-size:13px;">See all photos</a>
+          </div>
+          <div class="grid-preview">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=300" class="grid-photo-thumb" onclick="App.openMediaViewer(this.src)">
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=300" class="grid-photo-thumb" onclick="App.openMediaViewer(this.src)">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300" class="grid-photo-thumb" onclick="App.openMediaViewer(this.src)">
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT USER POSTS FEED -->
+      <div class="profile-feed">
+        <!-- Post creator widget -->
+        <div class="create-post-card mb-16">
+          <div class="create-post-header">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="user-avatar nav-user-avatar">
+            <div class="create-post-input-trigger" onclick="App.openModal('modalCreatePost')">Post something to your timeline...</div>
+          </div>
+        </div>
+
+        <!-- Render posts for this profile -->
+        <div id="profilePostsFeed"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <nav class="mobile-bottom-bar">
+    <a href="index.html" class="bottom-tab"><span>🏠</span><span>Home</span></a>
+    <a href="friends.html" class="bottom-tab"><span>👥</span><span>Friends</span></a>
+    <a href="messages.html" class="bottom-tab"><span>💬</span><span>Chat</span></a>
+    <a href="notifications.html" class="bottom-tab"><span>🔔</span><span>Alerts</span></a>
+    <a href="profile.html" class="bottom-tab active"><span>👤</span><span>Profile</span></a>
+  </nav>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/upload.js"></script>
+  <script src="js/reactions.js"></script>
+  <script src="js/comments.js"></script>
+  <script src="js/posts.js"></script>
+  <script src="js/stories.js"></script>
+  <script src="js/friends.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
